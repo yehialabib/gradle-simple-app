@@ -34,26 +34,42 @@ jar {
 
 // --- Part 5: Upload using Gradle Configuration ---
 publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            // Reference the JAR artifact created by the 'jar' task
-            artifact tasks.jar
 
-            // Set the metadata for the artifact in Nexus
-            groupId = project.group
-            artifactId = 'gradle-simple-app'
-            version = project.version
-        }
-    }
-    repositories {
-        maven {
-            // !! IMPORTANT: Replace YOUR_PASSWORD with the actual admin password from Nexus
-            url "http://localhost:8081/repository/simple-gradle-repo/"
-            allowInsecureProtocol = true // Necessary for HTTP
-            credentials {
-                username = "admin"
-                password = "ADMIN"
-            }
-        }
-    }
+publications {
+
+mavenJava(MavenPublication) {
+
+artifact tasks.jar
+
+groupId = 'com.example'
+
+artifactId = 'gradle-simple-app'
+
+version = '1.0.0'
+
+}
+
+}
+
+
+repositories {
+
+maven {
+
+url "http://localhost:8081/repository/simple-gradle-repo/"
+
+allowInsecureProtocol = true
+
+credentials {
+
+username = "admin"
+
+password = "admin123"
+
+}
+
+}
+
+}
+
 }
